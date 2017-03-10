@@ -10,6 +10,9 @@ gateway:
   environment:
     # Either set these as environment variables on your workstation
     # or hard-code them here.
+    # Setting the UID and GID for the acronis user is not essential, but 
+    # can help to control file ownership for volumes mapped into your local
+    # filesystem. This can be helpful for unix quota management or accounting.
     ACRONIS_UID: 1000
     ACRONIS_GID: 1000
     ACRONIS_USERNAME: ${ACRONIS_USERNAME}
