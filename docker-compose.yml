@@ -1,0 +1,19 @@
+---
+gateway:
+  build: gateway
+  restart: always
+  ports:
+    - 44445:44445
+  volumes:
+    - ./data:/var/lib/Acronis/storage
+    - ./certs:/etc/pki/tls/certs/Acronis/storage
+  environment:
+    # Either set these as environment variables on your workstation
+    # or hard-code them here.
+    ACRONIS_UID: 1000
+    ACRONIS_GID: 1000
+    ACRONIS_USERNAME: ${ACRONIS_USERNAME}
+    ACRONIS_PASSWORD: ${ACRONIS_PASSWORD}
+    ACRONIS_GATEWAYID: ${ACRONIS_GATEWAYID}
+    ACRONIS_HOSTNAME: ${ACRONIS_HOSTNAME}
+    ACRONIS_PORT: 44445
