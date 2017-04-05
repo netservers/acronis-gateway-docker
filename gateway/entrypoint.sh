@@ -25,7 +25,7 @@ if [ ! -e "/etc/pki/tls/certs/Acronis/storage/fes.pem" ]; then
 	        MYIP=`curl ifconfig.co`
 		ACRONIS_HOSTNAME=$MYIP
 	fi
-	acronis-storage-registration -u "$ACRONIS_USERNAME" -p "$ACRONIS_PASSWORD" -s cloud.acronis.com -a "$ACRONIS_HOSTNAME" -i "$ACRONIS_GATEWAYID" -o "/etc/pki/tls/certs/Acronis/storage/"
+	acronis-storage-registration -u "$ACRONIS_USERNAME" -p "$ACRONIS_PASSWORD" -s cloud.acronis.com -a "${ACRONIS_HOSTNAME}:${ACRONIS_PORT}" -i "$ACRONIS_GATEWAYID" -o "/etc/pki/tls/certs/Acronis/storage/"
 fi
 
 xmlstarlet ed --inplace -u "//ArchivingStorageSystemConfiguration/FrontEndServer/InternetInterface" -v "0.0.0.0:${ACRONIS_PORT}" /etc/Acronis/acronis-storage-gateway.xml
