@@ -27,7 +27,7 @@ if [ ! -e "/acronis_initialised" ]; then
 				ACRONIS_HOSTNAME=$MYIP
 		fi
 		acronis-storage-registration -u "$ACRONIS_USERNAME" -p "$ACRONIS_PASSWORD" -s cloud.acronis.com -a "${ACRONIS_HOSTNAME}:${ACRONIS_PORT}" -i "$ACRONIS_GATEWAYID" -o "/etc/pki/tls/certs/Acronis/storage/"
-		if [ -e "/etc/pki/tls/certs/Acronis/storage/dc.crt"]; then
+		if [ -e "/etc/pki/tls/certs/Acronis/storage/dc.crt" ]; then
 			# Success
 			date > /acronis_initialised
 		else
