@@ -21,13 +21,13 @@ fi
 chown -R acronis:acronis /etc/pki/tls/certs/Acronis/storage/ /var/log/Acronis/*
 
 if [ ! -e "/acronis_initialised" ]; then
-	if [ ! -e "/etc/pki/tls/certs/Acronis/storage/fes.pem" ]; then
+	if [ ! -e "/etc/pki/tls/certs/Acronis/storage/dc.crt" ]; then
 		if [ "$ACRONIS_HOSTNAME" == "" ]; then
 		        MYIP=`curl ifconfig.co`
 				ACRONIS_HOSTNAME=$MYIP
 		fi
 		acronis-storage-registration -u "$ACRONIS_USERNAME" -p "$ACRONIS_PASSWORD" -s cloud.acronis.com -a "${ACRONIS_HOSTNAME}:${ACRONIS_PORT}" -i "$ACRONIS_GATEWAYID" -o "/etc/pki/tls/certs/Acronis/storage/"
-		if [ -e "/etc/pki/tls/certs/Acronis/storage/fes.pem"]; then
+		if [ -e "/etc/pki/tls/certs/Acronis/storage/dc.crt"]; then
 			# Success
 			date > /acronis_initialised
 		else
@@ -39,7 +39,7 @@ if [ ! -e "/acronis_initialised" ]; then
 	fi
 fi
 
-if [ ! -e "/etc/pki/tls/certs/Acronis/storage/fes.pem" ]; then
+if [ ! -e "/etc/pki/tls/certs/Acronis/storage/dc.crt" ]; then
 	initialised=$(cat /acronis_initialised)
 	echo "Acronis was apparently registered on or before '$initialised', yet the certificate is missing"
 	echo "This is possibly due to a problem mounting the /etc/pki/tls/certs/Acronis/storage directory"
