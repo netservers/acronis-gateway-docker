@@ -50,4 +50,8 @@ xmlstarlet ed --inplace -u "//ArchivingStorageSystemConfiguration/FrontEndServer
 
 unset ACRONIS_PASSWORD
 
+if [ ! -e "/etc/ssh/ssh_host_rsa_key" ]; then
+  /usr/sbin/sshd-keygen
+fi
+
 exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
